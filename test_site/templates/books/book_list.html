@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+<section>
+  <header>
+    <h2>Список книг</h2>
+    <a href="{% url 'add_book' %}" class="btn">Добавить книгу</a>
+  </header>
+
+  <ul class="item-list">
+    {% for book in books %}
+    <li>
+      <h3>{{ book.title }}</h3>
+      <p class="author">Автор: {{ book.author.name }}</p>
+      {% if book.published_date %}
+        <p class="date">Дата публикации: {{ book.published_date|date:"d.m.Y" }}</p>
+      {% endif %}
+      {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-cover">
+      {% endif %}
+      {% if book.description %}
+        <p class="description">{{ book.description|truncatewords:30 }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

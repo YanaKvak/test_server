@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+<section>
+  <header>
+    <h2>Отправка сообщений</h2>
+  </header>
+  
+  <form action="/chat/" method="post">
+    {% csrf_token %}
+    
+    <div class="form-field">
+      <label for="message">Введите сообщение:</label>
+      <input type="text" name="message" id="message" required>
+    </div>
+    
+    <button type="submit">Отправить сообщение в чат</button>
+  </form>
+</section>
+
+<section>
+  <header>
+    <h2>Сам чат</h2>
+  </header>  
+  <div class="chat-messages">
+    {% for chat_item in chat_items %}
+      <div class="message">
+        <span class="message-author">{{ chat_item.author }}:</span>
+        <span class="message-text">{{ chat_item.message }}</span>
+        <small class="message-date">{{ chat_item.created_at|date:"H:i d.m.Y" }}</small>
+      </div>
+    {% endfor %}  
+  </div>    
+</section>
+{% endblock %}
+

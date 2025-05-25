@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+<section>
+  <header>
+    <h2>Список авторов</h2>
+  </header>
+
+  <ul class="item-list">
+    {% for author in authors %}
+    <li>
+      <h3>{{ author.name }}</h3>
+      {% if author.bio %}
+        <p class="bio">{{ author.bio|truncatewords:30 }}</p>
+      {% endif %}
+      <h4>Книги:</h4>
+      <ul class="books">
+        {% for book in author.books.all %}
+          <li>{{ book.title }} ({{ book.published_date|date:"Y"|default:"Дата неизвестна" }})</li>
+        {% empty %}
+          <li>Нет книг</li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+    <form action="/accounts/login/" method="post">
+        {% csrf_token %}
+
+        <!-- form -- это форма для авторизации. Она уже создана за нас. -->
+        <!-- .as_p -- показать форму в отдельном абзаце (так просто красиво) -->
+        {{ form.as_p }}
+        <button type="submit">Войти в систему</button>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,13 @@
+<span>Меню:</span>
+<ul>
+    {% for menu_item in menu_items %}
+        <li><a href="{{ menu_item.link }}">{{ menu_item.text }}</a></li>
+    {% endfor %}
+    <li>
+        <form action="/accounts/logout/" method="post">
+            {% csrf_token %}
+
+            <button type="submit">Выйти из системы</button>
+        </form>
+    </li>
+</ul>

@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+<section>
+  <h2>Привет, {% if request.user.is_authenticated %}{{ request.user }}{% else %}Гость{% endif %}!</h2>
+  
+  {% if is_ONS %}
+    <div class="alert">
+      <p>Вам нельзя в чат. Причина — Вы Ольга Николаевна!</p>
+    </div>
+  {% endif %}
+  
+  <p>Добро пожаловать в нашу систему учета книг. Здесь вы можете:</p>
+  <ul>
+    <li>Просматривать список книг</li>
+    <li>Просматривать список авторов</li>
+    <li>Добавлять новые книги</li>
+    <li>Общаться в чате</li>
+  </ul>
+</section>
+{% endblock %}
